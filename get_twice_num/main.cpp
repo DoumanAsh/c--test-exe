@@ -73,7 +73,7 @@ static void measure(std::function<void(std::vector<T>&, std::vector<T>&)> get_tw
     std::cout << size << " elements required " << elapsed.count() << "ms\n";
 }
 
-int main(int, char*) {
+int main(int, char**) {
     std::cout << "Sorting in a temp vector:\n";
     verify<long>(get_twice_numbers<long>);
     measure<long>(get_twice_numbers<long>, 500000);

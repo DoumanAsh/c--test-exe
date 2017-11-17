@@ -6,6 +6,7 @@ set(MODULE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/.cmake/Modules")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${MODULE_DIR})
 include(LazyUtils)
 
+set(CMAKE_CXX_STANDARD 17)
 # Generates compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -32,7 +33,7 @@ set_output_dir("${CMAKE_BINARY_DIR}/dist")
 ###########################
 # Max compile warnings for own code only
 ##########################
-set_msvc_flags_if("/W4 /std:c++latest /source-charset:utf-8")
+set_msvc_flags_if("/W4 /source-charset:utf-8")
 set_gcc_flags_if("-Wall -Wextra")
 
 ###########################
@@ -49,3 +50,4 @@ set_gcc_flags_if("-Wall -Wextra")
 # SRC
 ##########################
 add_subdirectory("get_twice_num/")
+add_subdirectory("multi_queue_processing/")
