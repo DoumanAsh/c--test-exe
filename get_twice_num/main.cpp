@@ -7,6 +7,30 @@
 #include <functional>
 #include <chrono>
 
+#include <unordered_map>
+#include <unordered_set>
+
+template<typename T>
+static void get_twice_numbers2(std::vector<T>& input, std::vector<T>& output) noexcept {
+    std::unordered_map<int, size_t> ocs(input.size());
+    std::unordered_set<int> eq2(input.size());
+
+    for (const auto& elem : input) {
+        auto& oc = ocs[elem];
+        oc += 1;
+
+        switch (oc) {
+            case 2: eq2.insert(elem); break;
+            case 3: eq2.erase(elem); break;
+            default: break;
+        }
+    }
+
+    for (const auto& elem : eq2) {
+        output.push_back(elem);
+    }
+}
+
 /**
  * Retrieves elements that are met twice in input.
  *
@@ -76,7 +100,27 @@ static void measure(std::function<void(std::vector<T>&, std::vector<T>&)> get_tw
 int main(int, char**) {
     std::cout << "Sorting in a temp vector:\n";
     verify<long>(get_twice_numbers<long>);
+    verify<long>(get_twice_numbers2<long>);
+    std::cout << "Small:\n";
+    std::cout << "Sort+iterate:\n";
+    measure<long>(get_twice_numbers<long>, 50000);
+    std::cout << "Two unoredered maps:\n";
+    measure<long>(get_twice_numbers2<long>, 50000);
+
+    std::cout << "-----------------------------:\n";
+    std::cout << "Middle:\n";
+    std::cout << "Sort+iterate:\n";
     measure<long>(get_twice_numbers<long>, 500000);
+    std::cout << "Two unoredered maps:\n";
+    measure<long>(get_twice_numbers2<long>, 500000);
+
+    std::cout << "-----------------------------:\n";
+    std::cout << "Big:\n";
+    std::cout << "Sort+iterate:\n";
+    measure<long>(get_twice_numbers<long>, 5000000);
+    std::cout << "Two unoredered maps:\n";
+    measure<long>(get_twice_numbers2<long>, 5000000);
+
 
     return 0;
 }
