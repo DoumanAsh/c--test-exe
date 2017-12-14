@@ -1,53 +1,36 @@
-###########################
-# Init
-##########################
 cmake_minimum_required(VERSION 3.5)
 set(MODULE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/.cmake/Modules")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${MODULE_DIR})
-include(LazyUtils)
+include(msvc)
+include(gcc)
 
 set(CMAKE_CXX_STANDARD 17)
-# Generates compile_commands.json
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+project(test-exercise LANGUAGES CXX VERSION)
 
-project(VnTextTrim LANGUAGES CXX VERSION)
+macro(set_output_dir dir)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${dir}/lib)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${dir}/lib)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${dir}/bin)
+endmacro(set_output_dir)
 
-###########################
-# Compiler flags
-##########################
-if (WIN32)
-    # For MinGW we assume that minimum runtime is Vista
-    set_gcc_flags_if("-D_WIN32_WINNT=0x0600")
-
-    # Enforces WinAPI to use unicode version of functions
-    add_definitions(-DUNICODE)
-    add_definitions(-D_UNICODE)
-    enable_static_crt()
-    remove_msvc_default_warning_level()
-endif()
-###########################
-# Output dir
-##########################
 set_output_dir("${CMAKE_BINARY_DIR}/dist")
 
-###########################
-# Max compile warnings for own code only
-##########################
-set_msvc_flags_if("/W4 /source-charset:utf-8")
-set_gcc_flags_if("-Wall -Wextra")
-
-###########################
-# 3PP
-##########################
-#add_subdirectory("3pp/")
-
-###########################
-# LIB
-##########################
-#add_subdirectory("lib/")
+msvc_remove_warning_level()
+msvc_set_flags_if("/std:c++latest  /utf-8 /W4")
+gcc_set_flags_if("-Wall -Wextra")
 
 ###########################
 # SRC
 ##########################
 add_subdirectory("get_twice_num/")
 add_subdirectory("multi_queue_processing/")
+add_subdirectory("assign_level/")
+
+###########################
+# Linter
+##########################
+option(CLANG_TIDY "Enable Clang tidy checks" OFF)
+if (CLANG_TIDY)
+    include(ClangTidy)
+    enable_clang_tidy_for(assign_level)
+endif()
