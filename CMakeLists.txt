@@ -16,20 +16,22 @@ endmacro(set_output_dir)
 set_output_dir("${CMAKE_BINARY_DIR}/dist")
 
 msvc_remove_warning_level()
-msvc_set_flags_if("/std:c++latest  /utf-8 /W4")
+msvc_set_flags_if("/utf-8 /W4")
 gcc_set_flags_if("-Wall -Wextra")
 
+include(catch.cmake)
 ###########################
 # SRC
 ##########################
 add_subdirectory("get_twice_num/")
 add_subdirectory("multi_queue_processing/")
 add_subdirectory("assign_level/")
+add_subdirectory("interval_map/")
 
 ###########################
 # Linter
 ##########################
-option(CLANG_TIDY "Enable Clang tidy checks" OFF)
+option(CLANG_TIDY "Enable Clang tidy checks" ON)
 if (CLANG_TIDY)
     include(ClangTidy)
     enable_clang_tidy_for(assign_level)
