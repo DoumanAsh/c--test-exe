@@ -28,6 +28,7 @@ add_subdirectory("multi_queue_processing/")
 add_subdirectory("assign_level/")
 add_subdirectory("interval_map/")
 add_subdirectory("suffix_with_unit/")
+add_subdirectory("graph/")
 
 ###########################
 # Linter
