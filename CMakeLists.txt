@@ -29,6 +29,7 @@ add_subdirectory("assign_level/")
 add_subdirectory("interval_map/")
 add_subdirectory("suffix_with_unit/")
 add_subdirectory("graph/")
+add_subdirectory("find_two_sum/")
 
 ###########################
 # Linter
