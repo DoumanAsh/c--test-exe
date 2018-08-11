@@ -31,6 +31,7 @@ add_subdirectory("suffix_with_unit/")
 add_subdirectory("graph/")
 add_subdirectory("find_two_sum/")
 add_subdirectory("find_distinct_pairs/")
+add_subdirectory("add_two_numbers/")
 
 ###########################
 # Linter
