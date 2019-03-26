@@ -5,7 +5,7 @@ include(msvc)
 include(gcc)
 
 set(CMAKE_CXX_STANDARD 17)
-project(test-exercise LANGUAGES CXX VERSION)
+project(test-exercise LANGUAGES CXX)
 
 macro(set_output_dir dir)
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${dir}/lib)
@@ -16,7 +16,7 @@ endmacro(set_output_dir)
 set_output_dir("${CMAKE_BINARY_DIR}/dist")
 
 msvc_remove_warning_level()
-msvc_set_flags_if("/utf-8 /W4 /std:c++17")
+msvc_set_flags_if("/utf-8 /W4")
 gcc_set_flags_if("-Wall -Wextra")
 
 include(catch.cmake)
@@ -32,6 +32,7 @@ add_subdirectory("graph/")
 add_subdirectory("find_two_sum/")
 add_subdirectory("find_distinct_pairs/")
 add_subdirectory("add_two_numbers/")
+add_subdirectory("story_board/")
 
 ###########################
 # Linter
