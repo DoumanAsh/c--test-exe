@@ -33,6 +33,7 @@ add_subdirectory("find_two_sum/")
 add_subdirectory("find_distinct_pairs/")
 add_subdirectory("add_two_numbers/")
 add_subdirectory("story_board/")
+add_subdirectory("what_a_nice_day/")
 
 ###########################
 # Linter
