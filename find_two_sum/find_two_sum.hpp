@@ -20,11 +20,11 @@ public:
 
             if (find != map.end()) {
                 result.push_back(find->second);
-                result.push_back(idx);
+                result.push_back(static_cast<int>(idx));
                 break;
             }
 
-            map.insert({nums[idx], idx});
+            map.insert({nums[idx], static_cast<int>(idx)});
         }
 
         return result;

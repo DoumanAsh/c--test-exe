@@ -16,7 +16,7 @@ endmacro(set_output_dir)
 set_output_dir("${CMAKE_BINARY_DIR}/dist")
 
 msvc_remove_warning_level()
-msvc_set_flags_if("/utf-8 /W4")
+msvc_set_flags_if("/utf-8 /W4 /permissive-")
 gcc_set_flags_if("-Wall -Wextra")
 
 include(catch.cmake)

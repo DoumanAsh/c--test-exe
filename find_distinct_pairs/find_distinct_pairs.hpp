@@ -36,8 +36,8 @@ int find_distinct_pairs(std::vector<int>& nums, long target) {
             distinct_pairs.emplace(find->first, nums[idx]);
         }
 
-        map.emplace(nums[idx], idx);
+        map.emplace(nums[idx], static_cast<int>(idx));
     }
 
-    return distinct_pairs.size();
+    return static_cast<int>(distinct_pairs.size());
 }

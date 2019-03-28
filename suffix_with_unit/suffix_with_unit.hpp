@@ -70,7 +70,7 @@ std::string suffixWithUnit(Number number) {
         result << num;
     }
     else {
-        uint64_t divider = std::pow(10, static_cast<uint64_t>(unit));
+        uint64_t divider = static_cast<uint64_t>(std::pow(10, static_cast<uint64_t>(unit)));
         uint64_t div = num / divider;
         uint64_t rem = num % divider;
         result << div;
