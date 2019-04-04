@@ -108,11 +108,6 @@ class StoryBoard {
             }
         }
 
-        //Returns iterator to resume search
-        auto search_text(const std::string& text) {
-            return search_text(text, this->notes.cbegin());
-        }
-
         ///Starts search from specified position.
         ///
         ///User must ensure that iterator is valid.
@@ -141,8 +136,8 @@ class StoryBoard {
         }
 
         //Returns iterator to resume search
-        auto search_tag(const std::string& tag) {
-            return search_tag(tag, this->notes.cbegin());
+        auto search_text(const std::string& text) {
+            return search_text(text, this->notes.cbegin());
         }
 
         ///Starts search from specified position.
@@ -168,5 +163,10 @@ class StoryBoard {
 
             return result;
 
+        }
+
+        //Returns iterator to resume search
+        auto search_tag(const std::string& tag) {
+            return search_tag(tag, this->notes.cbegin());
         }
 };

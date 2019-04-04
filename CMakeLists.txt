@@ -39,7 +39,7 @@ add_subdirectory("merge_intervals/")
 ###########################
 # Linter
 ##########################
-option(CLANG_TIDY "Enable Clang tidy checks" ON)
+option(CLANG_TIDY "Enable Clang tidy checks" OFF)
 if (CLANG_TIDY)
     include(ClangTidy)
     enable_clang_tidy_for(assign_level)
